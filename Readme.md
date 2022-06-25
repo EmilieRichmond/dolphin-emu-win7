@@ -6,6 +6,8 @@ Dolphin is an emulator for running GameCube and Wii games on Windows,
 Linux, macOS, and recent Android devices. It's licensed under the terms
 of the GNU General Public License, version 2 or later (GPLv2+).
 
+I have readded support for Windows 7 by compiling with QT 5.15. 
+
 Please read the [FAQ](https://dolphin-emu.org/docs/faq/) before using Dolphin.
 
 ## System Requirements
@@ -13,10 +15,7 @@ Please read the [FAQ](https://dolphin-emu.org/docs/faq/) before using Dolphin.
 ### Desktop
 
 * OS
-    * Windows (10 or higher).
-    * Linux.
-    * macOS (10.14 Mojave or higher).
-    * Unix-like systems other than Linux are not officially supported but might work.
+    * Windows (7 or higher).
 * Processor
     * A CPU with SSE2 support.
     * A modern CPU (3 GHz and Dual Core, not older than 2008) is highly recommended.
