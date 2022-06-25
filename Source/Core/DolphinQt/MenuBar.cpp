@@ -580,9 +580,13 @@ void MenuBar::AddHelpMenu()
   connect(documentation, &QAction::triggered, this, []() {
     QDesktopServices::openUrl(QUrl(QStringLiteral("https://dolphin-emu.org/docs/guides")));
   });
-  QAction* github = help_menu->addAction(tr("&GitHub Repository"));
+  QAction* github = help_menu->addAction(tr("&Offical Dolphin GitHub Repository"));
   connect(github, &QAction::triggered, this, []() {
     QDesktopServices::openUrl(QUrl(QStringLiteral("https://github.com/dolphin-emu/dolphin")));
+  });
+  QAction* githubwin7 = help_menu->addAction(tr("&Win 7 Build GitHub Repository"));
+  connect(githubwin7, &QAction::triggered, this, []() {
+    QDesktopServices::openUrl(QUrl(QStringLiteral("https://github.com/Tremaingames/dolphin-emu-win7")));
   });
   QAction* bugtracker = help_menu->addAction(tr("&Bug Tracker"));
   connect(bugtracker, &QAction::triggered, this, []() {

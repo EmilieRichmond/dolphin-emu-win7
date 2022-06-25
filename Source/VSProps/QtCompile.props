@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
   <PropertyGroup Label="UserMacros">
-    <ExternalsQtDir>$(ExternalsDir)Qt\Qt6.3.0\</ExternalsQtDir>
+    <ExternalsQtDir>$(ExternalsDir)Qt\Qt5.15.0\</ExternalsQtDir>
     <QtTargetDirDefault>$(ExternalsQtDir)$(Platform)\</QtTargetDirDefault>
     <QTDIR Condition="Exists('$(QtTargetDirDefault)') And ('$(QTDIR)'=='' Or !Exists('$(QTDIR)'))">$(QtTargetDirDefault)</QTDIR>
     <QTDIR Condition="Exists('$(QTDIR)') And !HasTrailingSlash('$(QTDIR)')">$(QTDIR)\</QTDIR>
@@ -27,14 +27,14 @@
       <AdditionalIncludeDirectories>$(QtIncludeDir)QtGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>$(QtIncludeDir)QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <!--
-        As of Qt6.3, Qt needs user code deriving from certain Qt types to have RTTI (AS WELL AS MOC, UGH).
+        As of Qt5.3, Qt needs user code deriving from certain Qt types to have RTTI (AS WELL AS MOC, UGH).
         Do NOT enable in dolphin outside of Qt-dependant code.
       -->
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(QtLibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Qt6Core$(QtLibSuffix).lib;Qt6Gui$(QtLibSuffix).lib;Qt6Widgets$(QtLibSuffix).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Core$(QtLibSuffix).lib;Qt5Gui$(QtLibSuffix).lib;Qt5Widgets$(QtLibSuffix).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <!--
       <AdditionalOptions>"/manifestdependency:type='Win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\" %(AdditionalOptions)</AdditionalOptions>
@@ -78,7 +78,7 @@
 
   <!--Copy the needed dlls-->
   <ItemGroup>
-    <QtDllNames_ Include="Qt6Core;Qt6Gui;Qt6Widgets" />
+    <QtDllNames_ Include="Qt5Core;Qt5Gui;Qt5Widgets" />
     <QtDllNames Include="@(QtDllNames_ -> '%(Identity)$(QtLibSuffix).dll')" />
     <QtDllsSrc Include="@(QtDllNames -> '$(QtBinDir)%(Identity)')" />
     <QtDllsDst Include="@(QtDllNames -> '$(BinaryOutputDir)%(Identity)')" />

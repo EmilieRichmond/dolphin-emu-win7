@@ -5,17 +5,17 @@ endif()
 
 if (NOT QT_DIR AND MSVC)
   if(_M_ARM_64)
-    set(QT_DIR "${CMAKE_SOURCE_DIR}/Externals/Qt/Qt6.3.0/ARM64/lib/cmake/Qt6")
+    set(QT_DIR "${CMAKE_SOURCE_DIR}/Externals/Qt/Qt5.15.0/ARM64/lib/cmake/Qt5")
   else()
-    set(QT_DIR "${CMAKE_SOURCE_DIR}/Externals/Qt/Qt6.3.0/x64/lib/cmake/Qt6")
+    set(QT_DIR "${CMAKE_SOURCE_DIR}/Externals/Qt/Qt5.15.0/x64/lib/cmake/Qt5")
   endif()
 endif()
 
 set(CMAKE_AUTOMOC ON)
 
-# For some reason the method in Qt6 documentation is not working (at least on ubuntu jammy)
-# When Qt5 and Qt6 are given in same NAMES entry, only Qt5 is ever found.
-find_package(QT NAMES Qt6 COMPONENTS Core Gui Widgets)
+# For some reason the method in Qt5 documentation is not working (at least on ubuntu jammy)
+# When Qt5 and Qt5 are given in same NAMES entry, only Qt5 is ever found.
+find_package(QT NAMES Qt5 COMPONENTS Core Gui Widgets)
 if(NOT QT_DIR)
   find_package(QT NAMES Qt5 COMPONENTS Core Gui Widgets)
 endif()
@@ -385,15 +385,15 @@ if (MSVC)
   set(qtGui "")
   set(qtGuiPriv "")
   set(qtWidgetsPriv "")
-  list(TRANSFORM Qt6Gui_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtGui)
-  list(TRANSFORM Qt6Gui_PRIVATE_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtGuiPriv)
-  list(TRANSFORM Qt6Widgets_PRIVATE_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtWidgetsPriv)
+  list(TRANSFORM Qt5Gui_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtGui)
+  list(TRANSFORM Qt5Gui_PRIVATE_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtGuiPriv)
+  list(TRANSFORM Qt5Widgets_PRIVATE_INCLUDE_DIRS PREPEND "/external:I" OUTPUT_VARIABLE qtWidgetsPriv)
   target_compile_options(dolphin-emu PRIVATE "${qtGui}")
   target_compile_options(dolphin-emu PRIVATE "${qtGuiPriv}")
   target_compile_options(dolphin-emu PRIVATE "${qtWidgets}")
 
   if ("${QT_VERSION_MAJOR}" GREATER_EQUAL 6)
-    # Qt6 requires RTTI
+    # Qt5 requires RTTI
     remove_cxx_flag_from_target(dolphin-emu "/GR-")
     target_compile_options(dolphin-emu PRIVATE "/GR")
   else()
@@ -439,7 +439,7 @@ if(WIN32)
   if ("${QT_VERSION_MAJOR}" LESS 6)
     set(NO_ANGLE_PARAM "--no-angle")
   else()
-    # parameter no longer exists in Qt6
+    # parameter no longer exists in Qt5
     set(NO_ANGLE_PARAM "")
   endif()
 
@@ -546,8 +546,8 @@ if(APPLE)
 
   # Plugins have to be manually included with Qt 6
   if (QT_VERSION_MAJOR EQUAL 6)
-    find_package(Qt6QMacStylePlugin REQUIRED PATHS ${Qt6Widgets_DIR})
-    find_package(Qt6QCocoaIntegrationPlugin REQUIRED PATHS ${Qt6Gui_DIR})
+    find_package(Qt5QMacStylePlugin REQUIRED PATHS ${Qt5Widgets_DIR})
+    find_package(Qt5QCocoaIntegrationPlugin REQUIRED PATHS ${Qt5Gui_DIR})
   endif()
 
   # Copy Qt plugins into the bundle

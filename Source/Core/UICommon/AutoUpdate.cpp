@@ -26,7 +26,7 @@
 #endif
 
 #if defined _WIN32 || defined __APPLE__
-#define OS_SUPPORTS_UPDATER
+// #define OS_SUPPORTS_UPDATER
 #endif
 
 // Refer to docs/autoupdate_overview.md for a detailed overview of the autoupdate process
